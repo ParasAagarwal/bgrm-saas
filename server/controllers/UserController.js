@@ -5,6 +5,7 @@ const userModel = require("../models/userModel.js");
 const clerkWebhooks = async (req, res) => {
   try {
     //Create a Svix instance with clerk webhook scret.
+    const { Webhook } = await svixImport();
     const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
 
     await whook.verify(JSON.stringify(req.body), {
